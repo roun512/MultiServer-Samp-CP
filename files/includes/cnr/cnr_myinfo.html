@@ -1,0 +1,203 @@
+<div class="col-sm-7">	
+	<?php if(isset($_GET['login'])): ?>
+			<div class="panel panel-success">
+				<div class="panel-heading">You have logged in successfully, <?=htmlentities($user->name);?>.</div>
+			</div>
+	<?php endif;
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Statistics of</b>: <?=htmlentities($user->name);?> <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><b>User ID</b></td>
+						<td><?=number_format($user->id);?></td>
+					</tr>
+					<tr>
+						<td><b>Username</b></td>
+						<td><?=htmlentities($user->name);?></td>
+					</tr>
+					<tr>
+						<td><b>Registration Date</b></td>
+						<td><?php $date = new DateTime($user->regdate);
+						echo $date->format('d/m/Y');
+						?></td>
+					</tr>
+					<tr>
+						<td><b>Last Active</b></td>
+						<td><?php $date = new DateTime($user->laston);
+						echo $date->format('d/m/Y');
+						?></td>
+					</tr>
+					<?php if($app->log->GetNameChangesCount($user->id)): ?>
+					<tr>
+						<td><b>Name Changes</b></td>
+						<td><a href="/namechanges.php?id=<?=$user->id;?>">View name changes</a></td>
+					</tr>
+					<?php endif; ?>
+					<tr>
+						<td><b>Class</b></td>
+						<td><?=$app->info->GetClassName($user->team);?></td>
+					</tr>
+					<tr>
+						<td><b>Total Score</b></td>
+						<td><?=number_format($user->crskills+$user->cskills);?>
+					</tr>
+					<tr>
+						<td><b>Police Score</b></td>
+						<td><?=number_format($user->cskills);?></td>
+					</tr>
+					<tr>
+						<td><b>Criminal Score</b></td>
+						<td><?=number_format($user->crskills);?></td>
+					</tr>
+					<tr>
+						<td><b>Money</b></td>
+						<td>$<?=number_format($user->money);?></td>
+					</tr>
+					<tr>
+						<td><b>Bank Balance</b></td>
+						<td>$<?=number_format($user->moneybank);?></td>
+					</tr>
+					<tr>
+						<td><b>Admin level</b></td>
+						<td><?php $adm = ""; 
+								switch($user->admin) {
+									case 0:
+										$adm = "<span>None (0)</span>";
+										break;
+									case 1:
+										$adm = "<span style='color:purple;'>Moderator (1)</span>";
+										break;
+									case 2:
+										$adm = "<span style='color:pink;'>Junior Administrator (2)</span>";
+										break;
+									case 3:
+										$adm = "<span style='color:green;'>Senior Administrator (3)</span>";
+										break;
+									case 4:
+										$adm = "<span style='color:blue;'>Lead Administrator (4)</span>";
+										break;
+									case 5:
+										$adm = "<span style='color:#FF2E2E;'>Server Manager (5)</span>";
+										break;
+									case 6:
+										$adm = "<span style='text-shadow: 0px 0px 6px #FF4A4A; color: red;'>Community Manager (6)</span>";
+										break;
+									case 7:
+										$adm = "<span style='text-shadow: 0px 0px 6px #DE1818; color: #C00000; font-weight: bold;'>Community Owner (7)</span>";
+										break;
+									default:
+										break;
+								}
+						?>
+						<?=$adm;?></td>
+					</tr>
+					<tr>
+						<td><b>VIP level</b></td>
+						<td><?php $vip = "";
+						switch ($user->vip) {
+							case 0:
+								$vip = "<span>None (0)</span>";
+								break;
+							case 1:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Bronze (1)</span>";
+								break;
+							case 2:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Silver (2)</span>";
+								break;
+							case 3:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Gold (3)</span>";
+								break;
+							case 4:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Diamond (4)</span>";
+								break;
+							case 5:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Titanium (5)</span>";
+								break;
+							default:
+								break;
+						}
+						?>
+						<?=$vip;?></td>
+					</tr>
+					<tr>
+						<td><b>Arrests</b></td>
+						<td><?=$user->arrests;?></td>
+					</tr>
+					<tr>
+						<td><b>Arrested</b></td>
+						<td><?=$user->arrested;?></td>
+					</tr>
+					<?php if($user->faction > 0): ?>
+					<tr>
+						<td><b>Faction</b></td>
+						<td><?=$app->info->GenerateFactionLink($app->info->GetFactionName($user->faction));?></td>
+					</tr>
+					<tr>
+						<td><b>Faction Rank</b></td>
+						<td><?=$user->factionrank;?></td>
+					</tr>
+					<?php endif; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>Skins</b></div>
+		<div class="panel-body">
+			<img src="/files/images/skins/<?=$user->policeskin;?>.png" width="49.9%" style="border-right: 5px solid rgb(221, 221, 221);"/>
+			<img src="/files/images/skins/<?=$user->civilianskin;?>.png" width="49.9%"/>
+		</div>
+	</div>
+
+	<?php $weaps = $app->info->GetPlayerWeapons($user->id);
+	if($weaps != 0): ?>
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>Weapons</b></div>
+		<div class="panel-body">
+			<?php
+			$rand = 0;
+			foreach($weaps as $weap): 
+				$rand++;
+				$weap_color = "";
+				switch ($rand) {
+					case 1:
+						$weap_color = "weapon_article_orange";
+						break;
+					case 2:
+						$weap_color = "weapon_article_blue";
+						break;
+					case 3:
+						$weap_color = "weapon_article_yellow";
+						break;
+					case 4:
+						$weap_color = "weapon_article_green";
+						$rand = 0;
+						break;
+					
+					default:
+						$weap_color = "weapon_article_orange";
+						break;
+				}
+			?>
+				<div class="weapon_article <?=$weap_color;?>">
+					<div class="weap"><?=$app->functions->GetWeaponName($weap->weapon_id);?></div>
+					<div class="ammo"><?=$weap->ammo;?> ammo</div>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+	<?php endif; ?>
+</div>

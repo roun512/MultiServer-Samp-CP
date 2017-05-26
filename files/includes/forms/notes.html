@@ -1,0 +1,36 @@
+<div class="col-sm-7">	
+	<?php
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>Manage Notes</b></div>
+		<div class="panel-body">
+			<center>
+			<form method="POST" role="form" style="border:0; width: 90%;">
+				<div class="row">
+					<div class="form-group">
+						<h4 style="text-align: center; text-decoration: underline;">Enter the new home message</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group" style="padding: 20px;">
+						<textarea name='content' class="row" style="width: 60%;" rows="5"><?=$app->admin->GetNotes();?></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<input type="submit" name="submit" value="Edit" class="btn btn-primary" />
+					</div>
+				</div>
+			</form>
+			</center>
+		</div>
+	</div>
+</div>

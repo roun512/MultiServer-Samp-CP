@@ -1,0 +1,79 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">Set Stats <i class="glyphicon glyphicon-user pull-right"> </i></div>
+		<div class="panel-body">
+			<form method="POST" role="form" class="form-horizontal text-center">
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for"username">Username</label>
+							<input type="text" name="username" class="form-control" placeholder="Username.." maxlength="25" value="<?=($result != null ? $_POST['username'] : '');?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="submit" name="get_stats" class="btn btn-success" value="Search"/>
+				</div>
+			<?php if($result != null): ?>
+				<hr>
+				<h3 style="text-decoration: underline;"><b>Stats</b></h3>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<input type="text" id="cut_per" value="0" required="required" max="100" maxlength="3" style="width: 15% !important; display: inline;" class="form-control" />% 
+							<input type="checkbox" id="dchecked" style="margin-left: 10px;" checked="checked"/> Deaths too?
+							<button class="btn btn-primary pull-right" onclick="CODCutStats()" type="button">Cut</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="score">Score</label>
+							<input type="text" name="score" class="form-control" id="score" value="<?=$result->score;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="money">Money</label>
+							<input type="text" name="money" class="form-control" id="money" value="<?=$result->money;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="kills">Kills</label>
+							<input type="text" name="kills" class="form-control" id="kills" value="<?=$result->kills;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="deaths">Deaths</label>
+							<input type="text" name="deaths" class="form-control" id="deaths" value="<?=$result->deaths;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="hidden" value="<?=$result->name;?>" />
+					<input type="submit" name="submit" class="btn btn-success" value="Set Stats"/>
+				</div>
+			<?php endif; ?>
+			</form>
+		</div>
+	</div>
+</div>

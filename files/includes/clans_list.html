@@ -1,0 +1,39 @@
+<div class="col-sm-7">
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+	<div class="panel panel-info">
+		<div class="panel-heading">List of clans</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Name</b></td>
+						<td><b>Tag</b></td>
+						<td><b>Official</b></td>
+						<td><b>Members</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($result as $clan): ?>
+					<tr>
+						<td><?=$app->info->GenerateClanLink($clan->name);?></td>
+						<td><?=htmlentities($clan->tag);?></td>
+						<td><?=($clan->status == 2 ? 'Official' : 'Un-official');?></td>
+						<td><?=count($app->info->GetClanMembers($clan->id));?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+</div>

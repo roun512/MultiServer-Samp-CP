@@ -1,0 +1,188 @@
+<?php
+	$admins = $app->info->GetAdmins();
+?>
+<div class="col-sm-7">
+	<div class="panel panel-info">
+		<div class="panel-heading">Community owners</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($admins as $admin):
+						if($admin->rank == 8): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=($admin->connected == 1) ? ("<span style='color:green;'>Online</span>") : $admin->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Community leaders</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($admins as $admin):
+						if($admin->rank == 7): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=($admin->connected == 1) ? ("<span style='color:green;'>Online</span>") : $admin->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Lead manager</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($admins as $admin):
+						if($admin->rank == 6): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=($admin->connected == 1) ? ("<span style='color:green;'>Online</span>") : $admin->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Server manager</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($admins as $admin):
+						if($admin->rank == 5): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=($admin->connected == 1) ? ("<span style='color:green;'>Online</span>") : $admin->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Lead administrator</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($admins as $admin):
+						if($admin->rank == 4): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=($admin->connected == 1) ? ("<span style='color:green;'>Online</span>") : $admin->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Senior administrators</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($admins as $admin):
+						if($admin->rank == 3): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=($admin->connected == 1) ? ("<span style='color:green;'>Online</span>") : $admin->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Junior administrators</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($admins as $admin):
+						if($admin->rank == 2): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=($admin->connected == 1) ? ("<span style='color:green;'>Online</span>") : $admin->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Moderators</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($admins as $admin):
+						if($admin->rank == 1): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=($admin->connected == 1) ? ("<span style='color:green;'>Online</span>") : $admin->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

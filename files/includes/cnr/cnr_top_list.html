@@ -1,0 +1,141 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Score</b> <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Score</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopScore() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=$stats->ascore;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Money</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Money</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopMoney() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=$stats->amoney;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Arrests</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Arrests</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopArrests() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=$stats->arrests;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Arrested</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Arrested</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopArrested() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=$stats->arrested;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Robberies</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Robberies</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopRobberies() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=htmlentities($stats->name);?></b></td>
+						<td><?=$stats->robberies;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

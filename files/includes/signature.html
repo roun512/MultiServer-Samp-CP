@@ -1,0 +1,37 @@
+<?php
+	$svr = "";
+	if($app->COD == true)
+		$svr = 'cod';
+?>
+<div class="col-sm-7">
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">Generate Signature</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-7 col-lg-offset-3">
+					<div class="form-group">
+						<label for"link">Direct link</label>
+						<input type="text" name="link" class="form-control" readonly="readonly" value="http://ucp.advance-gaming.com/gsig.php?id=<?=$app->user->id;?>&svr=<?=$svr;?>"/>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="col-sm-7" style="margin-left: 20%;">
+					<div class="form-group">
+						<img src="http://ucp.advance-gaming.com/gsig.php?id=<?=$app->user->id;?>&svr=<?=$svr;?>"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

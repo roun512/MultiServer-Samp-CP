@@ -1,0 +1,10 @@
+<?php
+	if($app->COD)
+		include_once 'includes/cod/cod_admin_sidebar.html';
+	elseif($app->CNR)
+		include_once 'includes/cnr/cnr_admin_sidebar.html';
+	elseif($app->GW)
+		include_once 'includes/gw/gw_admin_sidebar.html';
+	elseif($app->BF)
+		include_once 'includes/bf/bf_admin_sidebar.html';
+?>

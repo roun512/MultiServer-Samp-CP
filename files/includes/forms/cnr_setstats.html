@@ -1,0 +1,95 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">Set Stats <i class="glyphicon glyphicon-user pull-right"> </i></div>
+		<div class="panel-body">
+			<form method="POST" role="form" class="form-horizontal text-center">
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for"username">Username</label>
+							<input type="text" name="username" class="form-control" placeholder="Username.." maxlength="25" value="<?=($result != null ? $_POST['username'] : '');?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="submit" name="get_stats" class="btn btn-primary" value="Search"/>
+				</div>
+			<?php if($result != null): ?>
+				<hr>
+				<h3 style="text-decoration: underline;"><center><b>Stats</b></center></h3>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<input type="text" id="cut_per" value="0" required="required" max="100" maxlength="3" style="width: 15% !important; display: inline;" class="form-control" />% 
+							<input type="checkbox" id="achecked" style="margin-left: 10px;" checked="checked"/> Arrested too?
+							<button class="btn btn-success pull-right" onclick="CNRCutStats()" type="button">Cut</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="pscore">Police Score</label>
+							<input type="text" name="pscore" class="form-control" id="pscore" value="<?=$result->cskills;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="cscore">Criminal Score</label>
+							<input type="text" name="cscore" class="form-control" id="cscore" value="<?=$result->crskills;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="money">Money</label>
+							<input type="text" name="money" class="form-control" id="money" value="<?=$result->money;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="bmoney">Bank Money</label>
+							<input type="text" name="bmoney" class="form-control" id="bmoney" value="<?=$result->moneybank;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="arrests">Arrests</label>
+							<input type="text" name="arrests" class="form-control" id="arrests" value="<?=$result->arrests;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for="arrested">Arrested</label>
+							<input type="text" name="arrested" class="form-control" id="arrested" value="<?=$result->arrested;?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="hidden" value="<?=$result->name;?>" />
+					<input type="submit" name="submit" class="btn btn-success" value="Set Stats"/>
+				</div>
+			<?php endif; ?>
+			</form>
+		</div>
+	</div>
+</div>

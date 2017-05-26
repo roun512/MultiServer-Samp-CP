@@ -1,0 +1,31 @@
+<div class="col-sm-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">Servers Status <i class="glyphicon glyphicon-tasks pull-right"> </i></div>
+		<div class="panel-body">
+			<?php
+				$cod = $app->functions->GetCODPlayerCount();
+				$cnr = $app->functions->GetCNRPlayerCount();
+				$gw = $app->functions->GetGWPlayerCount();
+			?>
+			<small>Call of Duty Global Warfare</small>
+			<div class="progress" title="<?=$cod;?> players">
+				<div style="width: <?=round($cod/3);?>%" class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="<?=round($cod/3);?>" aria-valuemin="0" aria-valuemax="300"></div>
+			</div>
+
+			<small>Advance Cops 'N' Robbers</small>
+			<div class="progress" title="<?=$cnr;?> players">
+				<div style="width: <?=round($cnr/3);?>%" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?=round($cnr/3);?>" aria-valuemin="0" aria-valuemax="300"></div>
+			</div>
+
+			<small>Los Santos Gang Wars</small>
+			<div class="progress" title="<?=$gw;?> players">
+				<div style="width: <?=round($gw/3);?>%" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?=round($gw/3);?>" aria-valuemin="0" aria-valuemax="300"></div>
+			</div>
+			
+			<small>San Andreas Battlefield</small>
+			<div class="progress" title="<?=$bf;?> players">
+				<div style="width: <?=round($bf/3);?>%" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?=round($bf/3);?>" aria-valuemin="0" aria-valuemax="300"></div>
+			</div>
+		</div>
+	</div>
+</div>

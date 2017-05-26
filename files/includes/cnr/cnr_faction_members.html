@@ -1,0 +1,43 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Members</b> <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Rank</b></td>
+						<td style="text-decoration: underline;"><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $members = $app->info->GetFactionMembers($app->user->faction);
+					foreach($members as $member): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($member->name);?></td>
+						<td><?=$member->factionrank;?></td>
+						<?php if($member->online > -1): ?>
+						<td style="color:green;">Online</td>
+						<?php else: ?>
+						<td><?php $date = new DateTime($member->laston);
+						echo $date->format('d/m/Y');?></td>
+						<?php endif; ?>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

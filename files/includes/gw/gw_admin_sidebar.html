@@ -1,0 +1,39 @@
+<div class="col-sm-2">
+	<div class="panel panel-default">
+		<div class="panel-heading">Navigation Menu <i class="glyphicon glyphicon-menu-hamburger pull-right"> </i></div>
+		<div class="panel-body">
+			<ul class="nav nav-stacked">
+				<?php if($app->user->admin >= $app->config['aka']): ?>
+				<li><a href="/admin/aka.php">AKA</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['unban']): ?>
+				<li><a href="/admin/unban.php">Unban player</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setname']): ?>
+				<li><a href="/admin/setname.php">Set name</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setstats']): ?>
+				<li><a href="/admin/setstats.php">Set stats</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setpass']): ?>
+				<li><a href="/admin/setpass.php">Set password</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['oban']): ?>
+				<li><a href="/admin/oban.php">Offline ban</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setvip']): ?>
+				<li><a href="/admin/setvip.php">Set VIP</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setlevel']): ?>
+				<li><a href="/admin/setlevel.php">Set level</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['notes']): ?>
+				<li><a href="/admin/notes.php">Manage notes</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['logs']): ?>
+				<li><a href="/admin/logs.php">View logs</a></li>
+				<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+</div>

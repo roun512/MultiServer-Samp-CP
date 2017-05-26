@@ -1,0 +1,176 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Score</b> <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Score</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopScore() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->score);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Money</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Money</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopMoney() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->money);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Kills</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Kills</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopKills() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->kills);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Deaths</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Deaths</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopDeaths() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->deaths);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Suicides</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Suicides</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopSuicides() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->suicides);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Activity</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Time played</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1;
+					foreach($app->info->GetTopActivity() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?php
+							$ss=$stats->timeplayed;
+							$s = $ss%60;
+							$m = floor(($ss%3600)/60);
+							$h = floor(($ss%86400)/3600);
+							$d = floor(($ss%2592000)/86400);
+							if ($d>0) echo sprintf('%dd %02dh %02dm %02ds',$d,$h,$m,$s);
+							else echo sprintf('%02dh %02dm %02ds',$h,$m,$s);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,70 @@
+<div class="col-sm-2">
+	<div class="panel panel-default">
+		<div class="panel-heading">Account management <i class="glyphicon glyphicon-menu-hamburger pull-right"> </i></div>
+		<div class="panel-body">
+			<ul class="nav nav-stacked">
+				<?php if($app->user->admin >= $app->config['aka']): ?>
+				<li><a href="/admin/aka.php">View AKA list</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['aka']): ?>
+				<li><a href="/admin/user.php">View account information</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setname']): ?>
+				<li><a href="/admin/setname.php">Change account name</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setstats']): ?>
+				<li><a href="/admin/setstats.php">Change account stats</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setpass']): ?>
+				<li><a href="/admin/setpass.php">Change account password</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setlevel']): ?>
+				<li><a href="/admin/setlevel.php">Change account admin</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['setvip']): ?>
+				<li><a href="/admin/setvip.php">Change account VIP</a></li>
+				<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Banning <i class="glyphicon glyphicon-menu-hamburger pull-right"> </i></div>
+		<div class="panel-body">
+			<ul class="nav nav-stacked">
+				<?php if($app->user->admin >= $app->config['oban']): ?>
+				<li><a href="/admin/oban.php">Ban an account</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['unban']): ?>
+				<li><a href="/admin/unban.php">Unban an account</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['aka']): ?>
+				<li><a href="javascript:alert('Not functional yet.');">View detailed ban list</a></li>
+				<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Miscellaneous <i class="glyphicon glyphicon-menu-hamburger pull-right"> </i></div>
+		<div class="panel-body">
+			<ul class="nav nav-stacked">
+				<?php if($app->user->admin >= $app->config['tag_info']): ?>
+				<li><a href="/admin/tag.php">AG tag managment</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['notes']): ?>
+				<li><a href="/admin/notes.php">Change notes</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['aka']): ?>
+				<li><a href="/admin/activity.php">View activity data</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['activity']): ?>
+				<li><a href="/admin/snapshot.php">Take a snapshot</a></li>
+				<?php endif; ?>
+				<?php if($app->user->admin >= $app->config['logs']): ?>
+				<li><a href="/admin/logs.php">View log data</a></li>
+				<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+</div>

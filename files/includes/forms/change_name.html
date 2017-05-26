@@ -1,0 +1,38 @@
+<div class="col-sm-7">  
+    <?php 
+    if($app->success != null) { ?>
+        <div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+    <?php 
+    }
+    if($app->error != null) { ?>
+        <div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+    <?php 
+    }
+    ?>
+    <div class="panel panel-info">
+        <div class="panel-heading">Change your username <i class="glyphicon glyphicon-user pull-right"> </i></div>
+        <div class="panel-body">
+            <form method="POST" role="form" class="form-horizontal text-center">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-offset-3">
+                        <div class="form-group">
+                            <label for"cur_pass">Current Password</label>
+                            <input type="password" name="cur_pass" class="form-control" placeholder="Enter your current password.." value="" required="required" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-offset-3">
+                        <div class="form-group">
+                            <label for"new_pass">New Username</label>
+                            <input type="text" name="username" class="form-control" placeholder="Enter your new username.." maxlength="25" value="" required="required" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" name="submit" class="btn btn-success" value="Submit"></input>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

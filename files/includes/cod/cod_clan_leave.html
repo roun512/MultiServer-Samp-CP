@@ -1,0 +1,27 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">Leave clan <i class="glyphicon glyphicon-user pull-right"> </i></div>
+		<div class="panel-body">
+			<form method="POST" role="form" class="form-horizontal text-center">
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label>Are you sure you want to leave the clan?</label>
+							<input type="submit" value="Yes" name="sure" class="btn btn-danger btn-block" />
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

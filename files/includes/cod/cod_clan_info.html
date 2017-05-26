@@ -1,0 +1,94 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Clan Information</b>: <?=htmlentities($clan->name);?> <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><b>ID</b></td>
+						<td><?=$clan->id;?></td>
+					</tr>
+					<tr>
+						<td><b>Name</b></td>
+						<td><?=htmlentities($clan->name);?></td>
+					</tr>
+					<tr>
+						<td><b>Tag</b></td>
+						<td><?=htmlentities($clan->tag);?></td>
+					</tr>
+					<tr>
+						<td><b>Owner</b></td>
+						<td><?=$app->info->GenerateUserLink($app->info->GetUserInfoByID($clan->owner)->name);?></td>
+					</tr>
+					<tr>
+						<td><b>Members</b></td>
+						<td><?=count($app->info->GetClanMembers($clan->id));?></td>
+					</tr>
+					<tr>
+						<td><b>Status</b></td>
+						<td><b><?php
+						switch ($clan->status) {
+							case 1:
+								echo "<span style='color:red'>Un-official</span>";
+								break;
+							case 2:
+								echo "<span style='color:green'>Official</span>";
+							default:
+								$msg = "";
+								break;
+						}
+						?></b></td>
+					</tr>
+					<tr>
+						<td><b>Motto</b></td>
+						<td><span style="word-wrap: break-word;"><?=$clan->motto;?></span></td>
+					</tr>
+					<tr>
+						<td><b>Max Level</b></td>
+						<td><?=$clan->maxlvl;?></td>
+					</tr>
+					<tr>
+						<td><b>Settings Permission</b></td>
+						<td><?=$clan->settingsperm;?></td>
+					</tr>
+					<tr>
+						<td><b>Level Permission</b></td>
+						<td><?=$clan->levelperm;?></td>
+					</tr>
+					<tr>
+						<td><b>Points</b></td>
+						<td><?=number_format($clan->points);?></td>
+					</tr>
+					<tr>
+						<td><b>Score</b></td>
+						<td><?=number_format($clan->score);?></td>
+					</tr>
+					<tr>
+						<td><b>Money</b></td>
+						<td>$<?=number_format($clan->money);?></td>
+					</tr>
+					<tr>
+						<td><b>Kills</b></td>
+						<td><?=number_format($clan->kills);?></td>
+					</tr>
+					<tr>
+						<td><b>Deaths</b></td>
+						<td><?=number_format($clan->deaths);?></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

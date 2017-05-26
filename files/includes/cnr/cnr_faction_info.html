@@ -1,0 +1,63 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Faction Information</b>: <?=htmlentities($faction->name);?> <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><b>Faction ID</b></td>
+						<td><?=$faction->id;?></td>
+					</tr>
+					<tr>
+						<td><b>Faction Name</b></td>
+						<td><?=htmlentities($faction->name);?></td>
+					</tr>
+					<tr>
+						<td><b>Faction Tag</b></td>
+						<td><?=htmlentities($faction->tag);?></td>
+					</tr>
+					<tr>
+						<td><b>Owner</b></td>
+						<td><?=$app->info->GenerateUserLink($app->info->GetUserInfoByID($faction->owner)->name);?></td>
+					</tr>
+					<tr>
+						<td><b>Members</b></td>
+						<td><?=$faction->members;?></td>
+					</tr>
+					<tr>
+						<td><b>Max Level</b></td>
+						<td><?=$faction->maxlevel;?></td>
+					</tr>
+					<tr>
+						<td><b>Hire Permission</b></td>
+						<td><?=$faction->hireperm;?></td>
+					</tr>
+					<tr>
+						<td><b>Kick Permission</b></td>
+						<td><?=$faction->kickperm;?></td>
+					</tr>
+					<tr>
+						<td><b>Settings Permission</b></td>
+						<td><?=$faction->settingsperm;?></td>
+					</tr>
+					<tr>
+						<td><b>Level Permission</b></td>
+						<td><?=$faction->levelperm;?></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

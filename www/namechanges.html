@@ -1,0 +1,68 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>Search</b></div>
+		<div class="panel-body">
+			<form method="POST" role="form" class="form-horizontal text-center">
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for"term">Name to search</label>
+							<input type="text" name="name" class="form-control" placeholder="Term to search.." maxlength="25" value="<?=(isset($_POST['name']) ? $_POST['name'] : '');?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="submit" name="submit" class="btn btn-success" value="Search"></input>
+				</div>
+			</form>
+		</div>
+	</div>
+	<?php
+		if($result != null)
+		{
+			if(!$found) 
+				echo $app->log->ShowPagination($page, $total, $url);
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>Name Changes</b></div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>Old name</b></td>
+						<td style="text-decoration: underline;"><b>New name</b></td>
+						<?php if($found): ?>
+						<td style="text-decoration: underline;"><b>Current name</b></td>
+						<?php endif; ?>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($result as $log): ?>
+					<tr>
+						<td><?=$log->old_name;?></td>
+						<td><?=$log->new_name;?></td>
+						<?php if($found): ?>
+						<td><?=$app->info->GenerateUserLink($app->info->GetUserInfoByID($log->uid)->name);?></td>
+						<?php endif; ?>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<?php
+			if(!$found) 
+				echo $app->log->ShowPagination($page, $total, $url);
+		}
+	?>
+</div>

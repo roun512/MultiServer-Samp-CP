@@ -1,0 +1,166 @@
+<div class="col-sm-7">	
+	<?php if(isset($_GET['login'])): ?>
+			<div class="panel panel-success">
+				<div class="panel-heading">You have logged in successfully, <?=htmlentities($user->name);?>.</div>
+			</div>
+	<?php endif;
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Statistics of</b>: <?=htmlentities($user->name);?> <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td><b>User ID</b></td>
+						<td><?=$user->id;?></td>
+					</tr>
+					<tr>
+						<td><b>Username</b></td>
+						<td><?=htmlentities($user->name);?></td>
+					</tr>
+					<tr>
+						<td><b>Registration Date</b></td>
+						<td><?=$user->regdate;?></td>
+					</tr>
+					<tr>
+						<td><b>Last Active</b></td>
+						<td>
+						<?php if($user->connected == 1):?>
+							<span style="color:green;">Currently online.</span>
+						<?php else: ?>
+							<?=$user->laston;?>
+						<?php endif;?>
+						</td>
+					</tr>
+					<?php if($app->log->GetNameChangesCount($user->id)): ?>
+					<tr>
+						<td><b>Name Changes</b></td>
+						<td><a href="/namechanges.php?id=<?=$user->id;?>">View name changes</a></td>
+					</tr>
+					<?php endif; ?>
+					<tr>
+						<td><b>Rank</b></td>
+						<td><?=$app->info->GetRankName($user->score);?></td>
+					</tr>
+					<tr>
+						<td><b>Score</b></td>
+						<td><?=number_format($user->score);?>
+					</tr>
+					<tr>
+						<td><b>Money</b></td>
+						<td>$<?=number_format($user->money);?></td>
+					</tr>
+					<tr>
+						<td><b>Kills</b></td>
+						<td><?=$user->kills;?></td>
+					</tr>
+					<tr>
+						<td><b>Deaths</b></td>
+						<td><?=$user->deaths;?></td>
+					</tr>
+					<tr>
+						<td><b>K/D ratio</b></td>
+						<td><?=number_format($user->kills / ($user->deaths != 0 ? $user->deaths : 1), 2)?></td>
+					</tr>
+					<tr>
+						<td><b>Admin level</b></td>
+						<td><?php $adm = ""; 
+								switch($user->adminlevel) {
+									case 0:
+										$adm = "<span>None (0)</span>";
+										break;
+									case 1:
+										$adm = "<span style='color:purple;'>Moderator (1)</span>";
+										break;
+									case 2:
+										$adm = "<span style='color:pink;'>Junior Administrator (2)</span>";
+										break;
+									case 3:
+										$adm = "<span style='color:green;'>Senior Administrator (3)</span>";
+										break;
+									case 4:
+										$adm = "<span style='color:blue;'>Lead Administrator (4)</span>";
+										break;
+									case 5:
+										$adm = "<span style='color:#FF2E2E;'>Server Manager</span>";
+										break;
+									case 6:
+										$adm = "<span style='text-shadow: 0px 0px 6px #FF4A4A; color: red;'>Lead Manager</span>";
+										break;
+									case 7:
+										$adm = "<span style='text-shadow: 0px 0px 6px #FF4A4A; color: red;'>Community Leader</span>";
+										break;
+									case 8:
+										$adm = "<span style='text-shadow: 0px 0px 6px #DE1818; color: #C00000; font-weight: bold;'>Community Owner</span>";
+										break;
+									default:
+										break;
+								}
+						?>
+						<?=$adm;?></td>
+					</tr>
+					<tr>
+						<td><b>VIP level</b></td>
+						<td><?php $vip = "";
+						switch ($user->viplevel) {
+							case 0:
+								$vip = "<span>None (0)</span>";
+								break;
+							case 1:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Bronze (1)</span>";
+								break;
+							case 2:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Silver (2)</span>";
+								break;
+							case 3:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Gold (3)</span>";
+								break;
+							case 4:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Diamond (4)</span>";
+								break;
+							case 5:
+								$vip = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Titanium (5)</span>";
+								break;
+							default:
+								break;
+						}
+						?>
+						<?=$vip;?></td>
+					</tr>
+					<tr>
+						<td><b>Fighting Style</b></td>
+						<td><?=$app->info->GetStyleName($user->style);?></td>
+					</tr>
+					<tr>
+						<td><b>Highest spree</b></td>
+						<td><?=$user->spree;?></td>
+					</tr>
+					<tr>
+						<td><b>Zone captures</b></td>
+						<td><?=$user->zones;?></td>
+					</tr>
+					<?php if($user->clan > -1): ?>
+					<tr>
+						<td><b>Clan</b></td>
+						<td><?=$app->info->GenerateClanLink($app->info->GetClanInfoByID($user->clan)->name);?></td>
+					</tr>
+					<tr>
+						<td><b>Clan Rank</b></td>
+						<td><?=$user->crank;?></td>
+					</tr>
+					<?php endif; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

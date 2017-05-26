@@ -1,0 +1,18 @@
+<div class="col-sm-2">
+	<div class="panel panel-default">
+		<div class="panel-heading">Navigation Menu <i class="glyphicon glyphicon-menu-hamburger pull-right"> </i></div>
+		<div class="panel-body">
+			<ul class="nav nav-stacked">
+				<li><a href="/clan/index.php<?=($url != null ? $url : '');?>">Clan information</a></li>
+				<li><a href="/clan/members.php<?=($url != null ? $url : '');?>">Clan members</a></li>
+				<?php if($app->user->clan != -1 && $clan->id == $app->user->clan): ?>
+					<?php if($app->user->crank >= $app->info->GetClanInfoByID($app->user->clan)->levelperm): ?>
+						<li><a href="/clan/kick.php">Kick member</a></li>
+						<li><a href="/clan/level.php">Change Level</a></li>
+					<?php endif; ?>
+					<li><a href="/clan/leave.php">Leave clan</a></li>
+				<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+</div>

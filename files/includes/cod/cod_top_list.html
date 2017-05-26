@@ -1,0 +1,169 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Score</b> <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Score</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopScore() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->score);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Money</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Money</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopMoney() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->money);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Kills</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Kills</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopKills() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->kills);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Deaths</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Username</b></td>
+						<td style="text-decoration: underline;"><b>Deaths</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1; foreach($app->info->GetTopDeaths() as $stats): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($stats->name);?></b></td>
+						<td><?=number_format($stats->deaths);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Clans</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Clan</b></td>
+						<td style="text-decoration: underline;"><b>Score</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1;
+					foreach($app->info->GetTopClans() as $clan): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateClanLink($clan->name);?></b></td>
+						<td><?=number_format($clan->points);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Top Ratio</b> <i class="glyphicon glyphicon-eur pull-right"> </i>
+		</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>No.</b></td>
+						<td style="text-decoration: underline;"><b>Name</b></td>
+						<td style="text-decoration: underline;"><b>Ratio</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $count = 1;
+					foreach($app->info->GetTopRatio() as $user): ?>
+					<tr>
+						<td><?=$count++;?>.</td>
+						<td><b><?=$app->info->GenerateUserLink($user->name);?></b></td>
+						<td><?=$user->ratio;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

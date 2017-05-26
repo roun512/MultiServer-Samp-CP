@@ -1,0 +1,61 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>Search</b></div>
+		<div class="panel-body">
+			<form method="GET" role="form" class="form-horizontal text-center">
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for"search">Command to search</label>
+							<input type="text" name="search" class="form-control" placeholder="Command to search.." value="<?=(isset($_GET['search']) ? $_GET['search'] : '');?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="submit" name="submit" class="btn btn-success" value="Search"></input>
+				</div>
+			</form>
+		</div>
+	</div>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>Administrative logs</b></div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>Type</b></td>
+						<td style="text-decoration: underline;"><b>Admin</b></td>
+						<td style="text-decoration: underline;"><b>Target</b></td>
+						<td style="text-decoration: underline;"><b>Value</b></td>
+						<td style="text-decoration: underline;"><b>Status</b></td>
+						<td style="text-decoration: underline;"><b>Date</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($result as $log): ?>
+					<tr>
+						<td><?=$log->command;?></td>
+						<td><?=$app->info->GenerateUserLink($app->info->GetUserInfoByID($log->user)->name);?></td>
+						<td><?=($log->target == -1) ? ("None") : ($app->info->GenerateUserLink($app->info->GetUserInfoByID($log->target)->name));?></td>
+						<td><?=$log->value;?></td>
+						<td><?=($log->duty == 1)?("On-Duty"):("Off-Duty");?>
+						<td><?=$log->date . " - " . $log->time;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+</div>

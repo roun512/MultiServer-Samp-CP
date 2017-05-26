@@ -1,0 +1,97 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">AKA <i class="glyphicon glyphicon-user pull-right"> </i></div>
+		<div class="panel-body">
+			<form method="POST" role="form" class="form-horizontal text-center">
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for"name">Username</label>
+							<input type="text" name="name" class="form-control" placeholder="Username without tags." maxlength="25" required="required" />
+						</div>
+						<div class="form-group">
+							<label for"codid">CoD ID</label>
+							<input type="text" name="codid" class="form-control" placeholder="COD:GW ID" value="0" maxlength="25" required="required" />
+						</div>
+						<div class="form-group">
+							<label for"name">CnR ID</label>
+							<input type="text" name="cnrid" class="form-control" placeholder="A:CNR ID" value="0" maxlength="25" required="required" />
+						</div>
+						<div class="form-group">
+							<label for"lsgwid">LS:GW ID</label>
+							<input type="text" name="lsgwid" class="form-control" placeholder="LS:GW ID" maxlength="25" value="0" required="required" />
+						</div>
+						<div class="form-group">
+							<label for"sabfid">SA:BF ID</label>
+							<input type="text" name="sabfid" class="form-control" placeholder="SA:BF ID" maxlength="25" value="0" required="required" />
+						</div>
+						<div class="form-group">
+							<label for"forumid">Forum ID</label>
+							<input type="text" name="forumid" class="form-control" placeholder="Forum ID" maxlength="25" value="0" required="required" />
+						</div>
+						<div class="form-group">
+							<label for"link">App Link</label>
+							<input type="text" name="link" class="form-control" placeholder="AG Tag Application Link" required="required" />
+						</div>
+						<div class="form-group">
+							<label for"notes">Notes</label>
+							<input type="text" name="notes" class="form-control" placeholder="No notes? Put 'None.' then" value="None." required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="submit" name="submit" class="btn btn-success" value="Add"></input>
+				</div>
+			</form>
+		</div>
+	</div>
+	<?php if($result != null || $total > 0): ?>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+	<div class="panel panel-success">
+		<div class="panel-heading"><b>Tag Holders</b></div>
+		<div class="panel-body">
+		<table class="table">
+			<thead>
+				<tr>
+					<td style="text-decoration: underline;"><b>Username</b></td>
+					<td style="text-decoration: underline;"><b>COD ID</b></td>
+					<td style="text-decoration: underline;"><b>CNR ID</b></td>
+					<td style="text-decoration: underline;"><b>GW ID</b></td>
+					<td style="text-decoration: underline;"><b>BF ID</b></td>
+					<td style="text-decoration: underline;"><b>Forum ID</b></td>
+					<td style="text-decoration: underline;"><b>Link</b></td>
+					<td style="text-decoration: underline;"><b>Notes</b></td>
+					<td style="text-decoration: underline;"><b>Actions</b></td>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach($result as $player): ?>
+				<tr>
+					<td><?=htmlentities($player->name);?></td>
+					<td><?=$player->codid;?></td>
+					<td><?=$player->cnrid;?></td>
+					<td><?=$player->lsgwid;?></td>
+					<td><?=$player->sabfid;?></td>
+					<td><?=$player->forumid;?></td>
+					<td><a href="<?=$player->link;?>">App link</a></td>
+					<td><?=htmlentities($player->notes);?></td>
+					<td><a href="tag.php?delete=<?=$player->id;?>">Delete</a></td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+	<?php endif; ?>
+</div>

@@ -1,0 +1,46 @@
+<?php
+	$vips = $app->info->GetVIPs();
+?>
+<div class="col-sm-7">
+	<div class="panel panel-info">
+		<div class="panel-heading">List of donators</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Rank</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?
+					foreach($vips as $vip):
+						$tag = "";
+						switch($vip->rank) {
+							case 5:
+								$tag = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Titanium VIP (5)</span>";
+								break;
+							case 4:
+								$tag = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Diamond VIP (4)</span>";
+								break;
+							case 3:
+								$tag = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Gold VIP (3)</span>";
+								break;
+							case 2:
+								$tag = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Silver VIP (2)</span>";
+								break;
+							case 1:
+								$tag = "<span style='color: orange;text-shadow: 0px 0px 6px rgb(242, 198, 51);'>Bronze VIP (1)</span>";
+								break;
+						}
+					?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($vip->name);?></td>
+						<td><?=$tag;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

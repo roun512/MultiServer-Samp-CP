@@ -1,0 +1,55 @@
+<?php
+	$admins = $app->info->GetAdmins();
+?>
+<div class="col-sm-7">
+	<div class="panel panel-info">
+		<div class="panel-heading">List of staff members</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Rank</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?
+					foreach($admins as $admin):
+						$tag = "";
+						switch($admin->rank) {
+							case 7:
+								$tag = "<span style='color:red;'>Community Owner (7)</span>";
+								break;
+							case 6:
+								$tag = "<span style='color:red;'>Community Manager (6)</span>";
+								break;
+							case 5:
+								$tag = "<span style='color:red;'>Head Admin (5)</span>";
+								break;
+							case 4:
+								$tag = "<span style='color:green;'>Senior Admin (4)</span>";
+								break;
+							case 3:
+								$tag = "<span style='color:green;'>Confirmed Admin (3)</span>";
+								break;
+							case 2:
+								$tag = "<span style='color:green;'>Server Admin (2)</span>";
+								break;
+							case 1:
+								$tag = "<span style='color:green;'>Trial Admin (1)</span>";
+								break;
+							case 0:
+								$tag = "<span style='color:blue;'>Help Operator</span>";
+								break;
+						}
+					?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=$tag;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

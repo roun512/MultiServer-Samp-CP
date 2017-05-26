@@ -1,0 +1,63 @@
+<div class="col-sm-7">
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">Search</div>
+		<div class="panel-body">
+			<form method="GET" role="form" class="form-horizontal text-center">
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label for"term">Search</label>
+							<input type="text" name="q" class="form-control" placeholder="Search.." maxlength="25" value="<?=(isset($_GET['q']) ? htmlentities($_GET['q']) : '');?>" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="submit" name="submit" class="btn btn-success" value="Search"></input>
+				</div>
+			</form>
+		</div>
+	</div>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+	<div class="panel panel-info">
+		<div class="panel-heading">List of banned players</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>IP</b></td>
+						<td><b>Admin</b></td>
+						<td><b>Reason</b></td>
+						<td><b>Date</b></td>
+						<td><b>Unban on</b></td>
+						<td><b>Is ban exception</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($result as $ban): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($ban->name);?></td>
+						<td><?=$ban->ip;?></td>
+						<td><?=$app->info->GenerateUserLink($ban->admin);?></td>
+						<td><?=htmlentities($ban->reason);?></td>
+						<td><?=$ban->date;?></td>
+						<td><?php if ($ban->unban==0) echo 'Never'; else echo $ban->unbandate; ?></td>
+						<td><?php if ($ban->exception==1) echo 'Yes'; else echo 'No'; ?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+</div>

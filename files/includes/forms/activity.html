@@ -1,0 +1,33 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-default">
+		<div class="panel-heading">Activity Log - <?=$app->admin->GetLastSnapShot();?> <i class="glyphicon glyphicon-user pull-right"> </i></div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Administrator</b></td>
+						<td><b>Time</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($result as $admin): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($admin->name);?></td>
+						<td><?=$app->functions->CalculateActivity($admin->activity);?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

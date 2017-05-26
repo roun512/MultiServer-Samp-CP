@@ -1,0 +1,119 @@
+<?php
+	$vips = $app->info->GetVIPs();
+?>
+<div class="col-sm-7">
+	<div class="panel panel-info">
+		<div class="panel-heading">Diamond</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($vips as $vip):
+						if($vip->rank == 5): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($vip->name);?></td>
+						<td><?=($vip->connected == 1) ? ("<span style='color:green;'>Online</span>") : $vip->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Platinum</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($vips as $vip):
+						if($vip->rank == 4): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($vip->name);?></td>
+						<td><?=($vip->connected == 1) ? ("<span style='color:green;'>Online</span>") : $vip->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Gold</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($vips as $vip):
+						if($vip->rank == 3): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($vip->name);?></td>
+						<td><?=($vip->connected == 1) ? ("<span style='color:green;'>Online</span>") : $vip->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Silver</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($vips as $vip):
+						if($vip->rank == 2): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($vip->name);?></td>
+						<td><?=($vip->connected == 1) ? ("<span style='color:green;'>Online</span>") : $vip->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-info">
+		<div class="panel-heading">Bronze</div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td><b>Username</b></td>
+						<td><b>Last On</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($vips as $vip):
+						if($vip->rank == 1): ?>
+					<tr>
+						<td><?=$app->info->GenerateUserLink($vip->name);?></td>
+						<td><?=($vip->connected == 1) ? ("<span style='color:green;'>Online</span>") : $vip->laston;?></td>
+					</tr>	
+					<?php endif; endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

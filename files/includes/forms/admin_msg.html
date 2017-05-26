@@ -1,0 +1,29 @@
+<div class="col-sm-7">	
+	<?php if(isset($_GET['login'])): ?>
+			<div class="panel panel-success">
+				<div class="panel-heading">You have logged in successfully, <?=htmlentities($user->name);?>.</div>
+			</div>
+	<?php endif;
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+		<b>Staff message <i class="glyphicon glyphicon-stats pull-right"> </i>
+		</div>
+		<div class="panel-body">
+			<div class="staff_msg">
+				<p><?=nl2br($app->admin->GetNotes());?></p>
+			</div>
+			<?php if($app->user->admin >= $app->config['notes']): ?>
+			<div style="text-align: center; margin-top: 20px;"><a href="/admin/notes.php" class="btn btn-primary">Change message</a></div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>

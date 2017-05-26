@@ -1,0 +1,20 @@
+<div class="col-sm-2">
+	<div class="panel panel-default">
+		<div class="panel-heading">Navigation Menu <i class="glyphicon glyphicon-menu-hamburger pull-right"> </i></div>
+		<div class="panel-body">
+			<ul class="nav nav-stacked">
+				<li><a href="/faction/index.php<?=($url != null ? $url : '');?>">Faction information</a></li>
+				<li><a href="/faction/members.php<?=($url != null ? $url : '');?>">Faction members</a></li>
+				<?php if($app->user->faction != -1 && $faction->id == $app->user->faction): ?>
+					<?php if($app->user->factionrank >= $app->info->GetFactionInfoByID($app->user->faction)->kickperm): ?>
+						<li><a href="/faction/kick.php">Kick member</a></li>
+					<?php endif; ?>
+					<?php if($app->user->factionrank >= $app->info->GetFactionInfoByID($app->user->faction)->levelperm): ?>
+						<li><a href="/faction/level.php">Change Level</a></li>
+					<?php endif; ?>
+					<li><a href="/faction/leave.php">Leave faction</a></li>
+				<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+</div>

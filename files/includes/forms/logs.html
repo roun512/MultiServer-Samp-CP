@@ -1,0 +1,41 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+	<div class="panel panel-info">
+		<div class="panel-heading"><b>Administrative logs</b></div>
+		<div class="panel-body table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<td style="text-decoration: underline;"><b>Type</b></td>
+						<td style="text-decoration: underline;"><b>Admin</b></td>
+						<td style="text-decoration: underline;"><b>Target</b></td>
+						<td style="text-decoration: underline;"><b>Log</b></td>
+						<td style="text-decoration: underline;"><b>Date</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($app->log->GetAdminLogs($page, $offset) as $log): ?>
+					<tr>
+						<td><?=$app->log->GetLogType($log->type);?></td>
+						<td><?=$app->info->GenerateUserLink($app->info->GetUserInfoByID($log->adm_id)->name);?></td>
+						<td><?=$app->info->GenerateUserLink($app->info->GetUserInfoByID($log->target_id)->name);?></td>
+						<td><?=htmlentities($log->log);?></td>
+						<td><?=$log->date;?></td>
+					</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<?=$app->log->ShowPagination($page, $total, $url);?>
+</div>

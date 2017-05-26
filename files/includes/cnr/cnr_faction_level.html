@@ -1,0 +1,47 @@
+<div class="col-sm-7">	
+	<?php 
+	if($app->success != null) { ?>
+		<div class="panel panel-success"><div class="panel-heading"><?=$app->success;?></div></div>
+	<?php 
+	}
+	if($app->error != null) { ?>
+		<div class="panel panel-danger"><div class="panel-heading"><?=$app->error;?></div></div>
+	<?php 
+	}
+	?>
+	<div class="panel panel-info">
+		<div class="panel-heading">Level member <i class="glyphicon glyphicon-user pull-right"> </i></div>
+		<div class="panel-body">
+			<form method="POST" role="form" class="form-horizontal text-center">
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label>Username</label>
+							<select name="member" class="form-control">
+								<?php $members = $app->info->GetFactionMembers($app->user->faction);
+								foreach($members as $member): ?>
+								<option value="<?=$member->id;?>"><?=htmlentities($member->name);?> - Rank: <?=$member->factionrank;?></option>
+								<?php endforeach;?>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-lg-offset-3">
+						<div class="form-group">
+							<label>Level</label>
+							<select name="level">
+							<?php for($i = 0; $i <= $app->info->GetFactionInfoByID($app->user->faction)->maxlevel; $i++): ?>
+								<option value="<?=$i;?>"><?=$i;?></option>
+							<?php endfor; ?>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="submit" name="submit" class="btn btn-success" value="Change Level"></input>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

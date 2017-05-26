@@ -1,0 +1,33 @@
+<div class="servers_logos">
+			<div id="codgw">
+				<center><p class="sname">Global Warfare</p>
+				<?php $codon = $app->svr_cod->connect(); ?>
+				<b>Status</b>: <?=($codon) ? "Online" : "Offline";?>.<br/>
+				<b>Players</b>: 
+				<?php
+				if($codon) {
+					$info = $app->svr_cod->getInfo();
+					echo $info['players']."/".$info['maxplayers'];
+				} else {
+					echo "N/A";
+				}
+				?>
+				<br/></center>
+			</div>
+
+			<div id="acnr">
+				<center><p class="sname">Cops'n'Robbers</p>
+				<?php $cnron = $app->svr_cnr->connect(); ?>
+				<b>Status</b>: <?=($cnron) ? "Online" : "Offline";?>.<br/>
+				<b>Players</b>: 
+				<?php
+				if($cnron) {
+					$info = $app->svr_cnr->getInfo();
+					echo $info['players']."/".$info['maxplayers'];
+				} else {
+					echo "N/A";
+				}
+				?>
+				<br/></center>
+			</div>
+		</div>
