@@ -20,9 +20,11 @@
 	* Cookies related stuff ~ DO NOT TOUCH THIS (SPECIALLY VADNETTA)
 	*/
 
-	$config['hash']['cod'] = "6f868fc4d8ad60d852bf576b69f776d0a33da92a";
-	$config['hash']['cnr'] = "c6828196733b3616a34fc90677f7beb0e703b058";
-	$config['hash']['gw'] = "742bcdd116239a66a8755f48a3b70f740eaa85eb";
+	// Generate random hash for cookies for each server and add it here.
+
+	$config['hash']['cod'] = "";
+	$config['hash']['cnr'] = "";
+	$config['hash']['gw'] = "";
 
 	/*
 	* Administrative permissions
